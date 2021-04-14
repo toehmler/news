@@ -1,0 +1,14 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+# Node.js
+client/node_modules/
+# Python
+__pycache__
+env
+server/env
+server/*.json
+*.pyc
+# macOs
+.DS_Store
