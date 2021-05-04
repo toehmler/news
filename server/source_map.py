@@ -15,11 +15,14 @@ class source_map:
         self.datanews.api_key = self.api_key
         self.left_articles, self.right_articles = self.seed_articles()
 
+    # -77_results.json
+    # 68
+
     def seed_articles(self):
-        left_file = open('-77_results.json', 'r')
+        left_file = open('left_sample.json', 'r')
         left_data = json.load(left_file)
         left_file.close()
-        right_file = open('68_results.json', 'r')
+        right_file = open('right_sample.json', 'r')
         right_data = json.load(right_file)
         right_file.close()
         return left_data, right_data
