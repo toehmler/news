@@ -4,6 +4,7 @@ logs
 npm-debug.log*
 # Node.js
 client/node_modules/
+client/dist
 # Python
 __pycache__
 env
