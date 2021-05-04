@@ -29,7 +29,7 @@ class source_map:
 
 
     def load_sources(self):
-        sources_file = open(self.file_path)
+        sources_file = open(self.file_path, encoding="utf-8")
         reader = csv.reader(sources_file)
         sources = [(row[0], row[1], float(row[3]), row[4]) for row in reader]
         L_s = [s for s in sources if s[2] < 0]
