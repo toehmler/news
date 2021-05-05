@@ -14,7 +14,12 @@ jobs:
           key: ${{ secrets.SSHKEY }}
           port: ${{ secrets.PORT }}
           script: |
-                whoami
-                ls -al
+            cd /var/www/news/code
+            git pull
+            cd client
+            npm install
+            npm run build
+
+
           
 
