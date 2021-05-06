@@ -107,7 +107,7 @@ export default {
   },
   methods: {
     fetchArticles(bias) {
-      const query = `http://api.treyoehmler.com/api?bias=${bias}`;
+      const query = `api.treyoehmler.com/api?bias=${bias}`;
       axios.get(query)
         .then((res) => {
           if (bias < 0) {
