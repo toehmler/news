@@ -19,6 +19,7 @@ jobs:
             cd client
             npm install
             npm run build
+            sudo apachectl restart
 
 
           
