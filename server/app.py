@@ -15,6 +15,12 @@ CORS(app, resources={r'/*': {'origins': '*'}})
 sources = source_map('sources.csv')
 sources.load_sources()
 
+# sanity check
+@app.route('/pong', methods=['GET'])
+def pong_ping():
+    return jsonify('Ping!')
+
+
 
 # sanity check
 @app.route('/ping', methods=['GET'])
