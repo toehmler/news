@@ -113,7 +113,7 @@ export default {
   },
   methods: {
     fetchSources(bias) {
-      const query = `http://localhost:5000/sources?bias=${bias}`;
+      const query = `https://api.treyoehmler.com/sources?bias=${bias}`;
       if (bias < 0) {
         this.leftSourcesLoading = true;
       } else {
@@ -133,7 +133,7 @@ export default {
         });
     },
     fetchArticles(sourceList, bias) {
-      const query = `http://localhost:5000/articles`;
+      const query = `https://api.treyoehmler.com/articles`;
       //const query = `http://localhost:5000/api?bias=${bias}`;
 //      const query = `https://api.treyoehmler.com/api?bias=${bias}`;
       axios.post(query, {
