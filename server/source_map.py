@@ -66,8 +66,8 @@ class source_map:
         return fmt_url
 
 
-    def fetch_articles(self, bias):
-        source_list = self.fetch_sources(bias)
+    def fetch_articles(self, bias, source_list):
+#        source_list = self.fetch_sources(bias)
         if bias < 0:
             articles = self.left_articles
         else:
@@ -77,7 +77,7 @@ class source_map:
         for article in articles:
             article['date'] = arrow.get(article['pubDate']).humanize()
 
-        return (source_list, articles)
+        return articles
         '''
         articles = []
         for source in source_list:
@@ -90,6 +90,8 @@ class source_map:
             articles.extend(hits)
 
         articles.sort(key = lambda x: arrow.get(x['pubDate']), reverse=True)
+
+
         out_fname = f'{bias}_results.json'
         out_file = open(out_fname, 'w')
         json.dump(articles, out_file)

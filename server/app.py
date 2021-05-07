@@ -21,10 +21,18 @@ sources.load_sources()
 def ping_pong():
     return jsonify('Pong!')
 
-@app.route('/api', methods=['GET'])
-def api():
+@app.route('/sources', methods=['GET'])
+def source_list():
     bias = request.args.get('bias')
-    return jsonify(sources.fetch_articles(int(bias)))
+    return jsonify(sources.fetch_sources(int(bias)))
+
+
+@app.route('/articles', methods=['POST'])
+def api():
+    data = request.get_json()
+    bias = data['bias']
+    source_list = data['sources']
+    return jsonify(sources.fetch_articles(int(bias), source_list))
 
 
 if __name__ == '__main__':

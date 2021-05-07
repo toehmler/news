@@ -11,7 +11,9 @@
                             :bg-style="leftSliderBg"
                             :process-style="processStyle"
                             v-model="leftBias"
-                            @drag-end="fetchArticles(leftBias)"
+                            @slide-end="fetchSources(leftBias)"
+                            @drag-start="leftArticlesLoading = true"
+                            @drag-end="fetchArticles(leftSources, leftBias)"
                            :tooltip=false>
           </vue-range-slider>
         </div>
@@ -22,7 +24,9 @@
                             :bg-style="processStyle"
                             :process-style="rightSliderBg"
                             v-model="rightBias"
-                            @slide-end="fetchArticles(rightBias)"
+                            @slide-end="fetchSources(rightBias)"
+                            @drag-start="rightArticlesLoading = true"
+                            @drag-end="fetchArticles(rightSources, rightBias)"
                            :tooltip=false>
 
           </vue-range-slider>
@@ -45,7 +49,7 @@
       <!-- article cards -->
       <div class="grid grid-cols-1 md:grid-cols-2 gap-y-3 gap-x-5">
         <div>
-          <div v-if="leftLoading" class="mt-20">
+          <div v-if="leftArticlesLoading" class="mt-20">
             <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
           </div>
           <div v-else>
@@ -53,7 +57,7 @@
           </div>
         </div>
         <div>
-          <div v-if="rightLoading" class="mt-20">
+          <div v-if="rightArticlesLoading" class="mt-20">
             <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
           </div>
           <div v-else>
@@ -82,10 +86,12 @@ export default {
       rightArticles: [],
       leftSources: [],
       rightSources: [],
-      leftBias: -77,
-      rightBias: 68,
-      leftLoading: true,
-      rightLoading: true,
+      leftBias: -60,
+      rightBias: 55,
+      leftSourcesLoading: true,
+      rightSourcesLoading: true,
+      leftArticlesLoading: true,
+      rightArticlesLoading: true,
 
     };
   },
@@ -106,26 +112,50 @@ export default {
     VueRangeSlider
   },
   methods: {
-    fetchArticles(bias) {
-      const query = `https://api.treyoehmler.com/api?bias=${bias}`;
+    fetchSources(bias) {
+      const query = `http://localhost:5000/sources?bias=${bias}`;
+      if (bias < 0) {
+        this.leftSourcesLoading = true;
+      } else {
+        this.rightSourcesLoading = true;
+      }
       axios.get(query)
         .then((res) => {
           if (bias < 0) {
-            this.leftSources = res.data[0];
-            this.leftArticles = res.data[1];
-            this.leftLoading = false;
+            this.leftSources = res.data;
+            this.leftSourcesLoading = false;
           } else {
-            this.rightSources = res.data[0];
-            this.rightArticles = res.data[1];
-            this.rightLoading = false;
+            this.rightSources = res.data;
+            this.rightSourcesLoading = false;
           }
-          console.log(res.data)
+        }).catch((err) => {
+          console.log(err);
+        });
+    },
+    fetchArticles(sourceList, bias) {
+      const query = `http://localhost:5000/articles`;
+      //const query = `http://localhost:5000/api?bias=${bias}`;
+//      const query = `https://api.treyoehmler.com/api?bias=${bias}`;
+      axios.post(query, {
+          sources: sourceList,
+          bias: bias,
+        })
+        .then((res) => {
+          if (bias < 0) {
+            this.leftArticles = res.data;
+            this.leftArticlesLoading = false;
+          } else {
+            this.rightArticles = res.data;
+            this.rightArticlesLoading = false;
+          }
         }).catch((err) => {
           console.log(err);
         });
     },
   },
   mounted() {
+    this.fetchSources(this.leftBias);
+    this.fetchSources(this.rightBias);
     this.fetchArticles(this.leftBias);
     this.fetchArticles(this.rightBias);
   },

@@ -2,8 +2,10 @@
   <div class="rounded-lg flex flex-col dark:bg-gray-800 lg:flex-row p-2 bg-white shadow-md">
     <div class="flex-none w-100 lg:w-64 h-48 lg:h-auto relative text-left p-2">
       <img :src="article.imageUrl" class="absolute inset-0 w-full h-full object-cover rounded-lg z-0">
+      <!--
       <span class="px-2 py-1 text-sm font-semibold text-white bg-red-600 rounded-full z-10 relative top-0 left-0">{{article.source[2]}}</span>
       <span class="ml-3 px-2 py-1 text-sm font-semibold text-white bg-green-600 rounded-full z-10 relative top-0 left-0">{{article.source[2]}}</span>
+      -->
 
         <!--
          <span class="inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-red-100 bg-red-600 rounded-full">99+</span>
