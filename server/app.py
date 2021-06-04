@@ -38,6 +38,7 @@ def api():
     data = request.get_json()
     bias = data['bias']
     source_list = data['sources']
+    articles = sources.fetch_articles(int(bias), source_list)
     return jsonify(sources.fetch_articles(int(bias), source_list))
 
 
