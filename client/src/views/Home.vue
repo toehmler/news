@@ -115,8 +115,8 @@ export default {
       rightSourcesLoading: true,
       leftArticlesLoading: true,
       rightArticlesLoading: true,
-      defaultLeft: -50,
-      defaultRight: 50
+      defaultLeft: -64,
+      defaultRight: 45, 
 
     };
   },
