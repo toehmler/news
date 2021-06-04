@@ -13,7 +13,8 @@
     "core-js": "^3.6.5",
     "vue": "^2.6.11",
     "vue-range-component": "^1.0.3",
-    "vue-router": "^3.2.0"
+    "vue-router": "^3.2.0",
+    "vue-slider-component": "^3.2.11"
   },
   "devDependencies": {
     "@tailwindcss/postcss7-compat": "^2.0.4",
