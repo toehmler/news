@@ -157,7 +157,8 @@ export default {
         var sourceList = this.leftSources;
       else
         var sourceList = this.rightSources;
-      const query = 'http://localhost:5000/articles';
+      const query = 'https://api.treyoehmler.com/articles';
+//      const query = 'http://localhost:5000/articles';
       axios.post(query, {
           sources: sourceList,
           bias: bias
