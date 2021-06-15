@@ -67,7 +67,8 @@ class source_map:
 
 
     def fetch_articles(self, bias, source_list):
-#        source_list = self.fetch_sources(bias)
+        source_list = self.fetch_sources(bias)
+        '''
         if bias < 0:
             articles = self.left_articles
         else:
@@ -94,7 +95,7 @@ class source_map:
         out_file = open(out_fname, 'w')
         json.dump(articles, out_file)
         out_file.close()
-        '''
         return articles
+
         #return articles)
         #return (source_list, self.articles)
