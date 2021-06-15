@@ -1,8 +1,7 @@
 <template>
-  <div class="bg-light">
+  <div class="bg-light"> 
     <div class="container max-w-screen-xl mx-auto p-3">
    
-      <!-- source icons (md viewport and up) -->
       <bias-slider
         :toggle="toggle"
         :initLeftBias="defaultLeft"
@@ -33,9 +32,15 @@
 
 
       <!-- article cards -->
-
       <!-- small viewports -->
       <div class="md:hidden">
+        <mobile-switch
+          :toggleState="toggle"
+          :leftSources="leftSources"
+          :rightSources="rightSources"
+          v-on:toggleClick="toggle = !toggle">
+        </mobile-switch>
+        <!--
         <mobile-toggle 
           class="mb-5"
           :value="toggle"
@@ -43,22 +48,19 @@
           :leftSources="leftSources" 
           :rightSources="rightSources">
         </mobile-toggle>
+        -->
 
         <div v-if="toggle">
-          <div v-if="rightArticlesLoading" class="mt-20">
+          <div v-if="rightArticlesLoading" class="my-20">
             <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
           </div>
-          <div v-else>
-            <news-story v-for="(article, idx) in rightArticles" class="border-4 border-red-800 mb-4" :key="idx" :article="article"></news-story>
-          </div>
+          <news-story v-for="(article, idx) in rightArticles" class="border-4 border-red-800 mb-4" :key="idx" :article="article"></news-story>
         </div>
         <div v-else>
-          <div v-if="leftArticlesLoading" class="mt-20">
+          <div v-if="leftArticlesLoading" class="my-20">
             <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
           </div>
-          <div v-else>
-            <news-story v-for="(article, idx) in leftArticles" class="border-4 border-blue-800 mb-4" :key="idx" :article="article"></news-story>
-          </div>
+          <news-story v-for="(article, idx) in leftArticles" class="border-4 border-blue-800 mb-4" :key="idx" :article="article"></news-story>
         </div>
       </div>
       <!-- / small viewports -->
@@ -68,20 +70,16 @@
       <!-- Medium/lg viewports -->
       <div class="grid grid-cols-1 md:grid-cols-2 gap-y-3 gap-x-5">
         <div class="hidden md:block">
-          <div v-if="leftArticlesLoading" class="mt-20">
+          <div v-if="leftArticlesLoading" class="my-20">
             <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
           </div>
-          <div v-else>
-            <news-story v-for="(article, idx) in leftArticles" class="border-4 border-blue-800 mb-4" :key="idx" :article="article"></news-story>
-          </div>
+          <news-story v-for="(article, idx) in leftArticles" class="border-4 border-blue-800 mb-4" :key="idx" :article="article"></news-story>
         </div>
         <div class="hidden md:block">
-          <div v-if="rightArticlesLoading" class="mt-20">
-            <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
-          </div>
-          <div v-else>
+            <div v-if="rightArticlesLoading" class="my-20">
+              <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+            </div>
             <news-story v-for="(article, idx) in rightArticles" class="border-4 border-red-800 mb-4" :key="idx" :article="article"></news-story>
-          </div>
         </div>
       </div>
       <!-- / medium/lg viewports -->
@@ -132,6 +130,7 @@ export default {
     },
     async fetchSources(bias) {
       const query = `https://api.treyoehmler.com/sources?bias=${bias}`;
+//      const query = `http://localhost:5000/sources?bias=${bias}`;
       if (bias < 0) {
         this.leftSourcesLoading = true;
       } else {

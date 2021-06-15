@@ -96,10 +96,10 @@ export default {
 
 .toggle-indicator {
   position: absolute;
-  height: 34px;
-  width: 34px;
-  left: 2px;
-  bottom: 2px;
+  height: 30px;
+  width: 30px;
+  left: 4px;
+  bottom: 4px;
   background-color: #ffffff;
   border-radius: 9999px;
   box-shadow:  0 2px 4px rgba(0, 0, 0, 0.1);

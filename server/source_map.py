@@ -5,7 +5,7 @@ from datetime import datetime
 import arrow
 
 class source_map:
-    def __init__(self, file_path='output_fixed.csv'):
+    def __init__(self, file_path='sources_final.csv'):
         self.file_path = file_path
         self.left_sources = []
         self.right_sources = []
@@ -68,7 +68,6 @@ class source_map:
 
     def fetch_articles(self, bias, source_list):
 #        source_list = self.fetch_sources(bias)
-        '''
         if bias < 0:
             articles = self.left_articles
         else:
@@ -91,7 +90,6 @@ class source_map:
             articles.extend(hits)
 
         articles.sort(key = lambda x: arrow.get(x['pubDate']), reverse=True)
-        '''
         out_fname = f'{bias}_results.json'
         out_file = open(out_fname, 'w')
         json.dump(articles, out_file)

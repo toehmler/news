@@ -12,7 +12,7 @@ app.config.from_object(__name__)
 CORS(app, resources={r'/*': {'origins': '*'}})
 
 # load sources
-sources = source_map('sources.csv')
+sources = source_map()
 sources.load_sources()
 
 # sanity check
