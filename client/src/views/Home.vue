@@ -10,6 +10,7 @@
         v-on:dragEnd="fetchArticles"
         v-on:slideEnd="fetchSources">
       </bias-slider>
+
  
       <!-- source icons (desktop) -->
       <div class="hidden md:flex justify-center my-5">
@@ -49,7 +50,9 @@
           :rightSources="rightSources">
         </mobile-toggle>
         -->
+        <news-story v-for="(article, idx) in rightArticles" class="border-4 border-red-800 mb-4" :key="idx" :article="article"></news-story>
 
+        <!--
         <div v-if="toggle">
           <div v-if="rightArticlesLoading" class="my-20">
             <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
@@ -62,6 +65,7 @@
           </div>
           <news-story v-for="(article, idx) in leftArticles" class="border-4 border-blue-800 mb-4" :key="idx" :article="article"></news-story>
         </div>
+        -->
       </div>
       <!-- / small viewports -->
 
@@ -92,11 +96,13 @@
 
 <script>
 /* eslint-disable */
+/*
 import 'vue-range-component/dist/vue-range-slider.css'
 import VueRangeSlider from 'vue-range-component'
 
 import VueSlider from 'vue-slider-component'
 import 'vue-slider-component/theme/default.css'
+*/
 
 const axios = require('axios');
 
@@ -117,9 +123,6 @@ export default {
       defaultRight: 45, 
 
     };
-  },
-  components: {
-    VueRangeSlider,
   },
   methods: {
     dragStart(bias){

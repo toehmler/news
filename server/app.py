@@ -3,7 +3,7 @@ from flask_cors import CORS
 import csv
 from source_map import source_map
 
-DEBUG = True
+DEBUG = False
 
 app = Flask(__name__)
 app.config.from_object(__name__)
