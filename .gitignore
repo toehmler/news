@@ -15,3 +15,6 @@ server/*.json
 *.pyc
 # macOs
 .DS_Store
+# env files
+client/.env
+server/.env

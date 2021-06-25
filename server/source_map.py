@@ -3,13 +3,17 @@ import datanews
 import json
 from datetime import datetime
 import arrow
+import os
+from dotenv import load_dotenv
 
 class source_map:
     def __init__(self, file_path='sources_final.csv'):
+        load_dotenv()
         self.file_path = file_path
         self.left_sources = []
         self.right_sources = []
         self.radius = 1
+        self.api_key= os.environ.get('DATANEWS_API_KEY')
         self.api_key = '0fraab4bvhzj7f59n3z6hds0f'
         self.datanews = datanews
         self.datanews.api_key = self.api_key
