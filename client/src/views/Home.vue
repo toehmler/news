@@ -144,7 +144,7 @@ export default {
         this.rightArticlesLoading = true;
     },
     async fetchSources(bias) {
-      const query = `http://localhost:5000/sources?bias=${bias}`;
+      let query = `http://localhost:5000/sources?bias=${bias}`;
       if (process.env.VUE_APP_MODE_ENV == 'prod')
         query = `https://api.treyoehmler.com/sources?bias=${bias}`;
       if (bias < 0) {
@@ -173,7 +173,7 @@ export default {
       else
         var sourceList = this.rightSources;
 
-      const query = 'http://localhost:5000/articles';
+      let query = 'http://localhost:5000/articles';
       if (process.env.VUE_APP_MODE_ENV == 'prod') 
         query = 'https://api.treyoehmler.com/articles';
       axios.post(query, {
