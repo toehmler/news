@@ -14,7 +14,6 @@ class source_map:
         self.right_sources = []
         self.radius = 1
         self.api_key= os.environ.get('DATANEWS_API_KEY')
-        self.api_key = '0fraab4bvhzj7f59n3z6hds0f'
         self.datanews = datanews
         self.datanews.api_key = self.api_key
         self.left_articles, self.right_articles = self.seed_articles()
